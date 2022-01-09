@@ -33,8 +33,8 @@
 	$config['table_prefix'] = 'cscart_';)</br>
     - Почта admin@example.com пароль admin
     - Сохранить магазин в папке локального сервера<br>
-    - в папке var/backups лежит backup базы данных, ее нужно импортировать в свою чистую базу cs-cart<br>
-    - в паке var/database лежат sql с изменениями cs_cartul.sql ффайл со всей структурой и 4 только с добавленными изменениями
+    - в папке var/backups лежит backup базы данных она чистая без изменений<br>
+    - в паке var/tools лежат в архиве sql с изменениями cs_cartul.sql ффайл со всей структурой и 4 только с добавленными изменениями
     - в папке images/department картинки логотипов<br>
     - в папке app/controllers/backend/departments.php(файл с контроллером)<br>
 	 который подключает шаблоны<br>
