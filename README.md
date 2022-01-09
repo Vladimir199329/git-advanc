@@ -25,7 +25,7 @@
     - Скачать магазин из ветки разработки
     - Прописать свои настройки в config.local.php (Database connection options: </br>
     	$config['db_host'] = 'localhost';</br>
-	$config['db_name'] = 'cs_cartul';</br>
+	$config['db_name'] = 'cs_cartnew';</br>
 	$config['db_user'] = 'vladimir';</br>
 	$config['db_password'] = '3vglzly';</br>
 	$config['database_backend'] = 'mysqli';</br>
