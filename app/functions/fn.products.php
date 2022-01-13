@@ -2329,14 +2329,14 @@ function fn_get_products($params, $items_per_page = 0, $lang_code = CART_LANGUAG
         if (fn_allowed_for('MULTIVENDOR')) {
             $cache_tables[] = 'companies';
         }
-
+       
         Registry::registerCache(
             array($cache_prefix, $cache_key),
             $cache_tables,
             Registry::cacheLevel('static'),
             true
         );
-
+        
         if ($cache = Registry::get($cache_key)) {
             list($products, $params['total_items']) = $cache;
         } else {
