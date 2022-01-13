@@ -40,7 +40,8 @@ function fn_get_departments($params = [], $items_per_page = 0, $lang_code = CART
    // Set default values to input params
    $default_params = array(
     'page' => 1,
-    'items_per_page' => $items_per_page
+    'items_per_page' => $items_per_page,
+    'use_caching' => true,
 );
 
 $params = array_merge($default_params, $params);
@@ -112,8 +113,38 @@ $images = fn_get_image_pairs($department_image_ids, 'department', 'M', true, fal
 foreach ($departments as $department_id => $department) {
     $departments[$department_id]['main_pair'] = !empty($images[$department_id]) ? reset($images[$department_id]) : array();
 }
+//caching
+
+$sql_query_body = $join;
+
+if (
+    $params['use_caching']
+
+    && isset($params['dispatch'])
+    && $params['dispatch'] == 'departments.departments_view'
+    && $params['area'] == 'C'
+   
+) {
+    $cache_prefix = __FUNCTION__;
+    $cache_key = md5($sql_query_body);
+    $cache_tables = array('departments', 'department_id', 'description');
+    
+    Registry::registerCache(
+        array($cache_prefix, $cache_key),
+        $cache_tables,
+        Registry::cacheLevel('static'),
+        true
+    );
+   
+    Registry::set($cache_key, array($departments, $params['total_items']));
+    
+    if ($cache = Registry::get($cache_key)) {
+        list($departments, $params['total_items']) = $cache;
+    } 
+ }
 
 return array($departments, $params);
+
 }
 
 function fn_update_department($data, $department_id, $lang_code = DESCR_SL)

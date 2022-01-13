@@ -1,4 +1,4 @@
-<div id="product_features_{$block.block_id}">
+<div id="department_features_{$block.block_id}">
     <div class="ty-feature">
         {if $department_data.main_pair}
             <div class="ty-feature__image">
